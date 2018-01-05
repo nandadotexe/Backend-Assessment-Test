@@ -1,0 +1,37 @@
+{if $login_st|default:'' eq ''}
+<div class="login-body">
+    <form method="post" action="{$config->site_url('login/operatorlogin/login_process')}">
+        <label for="aid_username" class="username"></label>
+        <input type="text" placeholder="Username" name="username">
+        <label for="aid_password" class="password"></label>
+        <input type="password" placeholder="Password" name="pass">
+        <input type="submit" name="save" value="" class="button">
+        <div class="clear"></div>
+    </form>
+</div>
+{elseif $login_st|default:'' eq 'error'}
+<div class="login-notification">
+    <span class="notification-arrowup"></span>
+    <div class="notification-body"><p>Your Username or password is not Valid, Please Try with valid Username ora Password</p></div>
+    <span class="notification-footer"></span>
+    <span class="login-body-arrowup"></span>
+</div>
+<div class="login-body">
+    <form method="post" action="{$config->site_url('login/operatorlogin/login_process')}">
+        <label for="aid_username" class="username"></label>
+        <input type="text" placeholder="Username" name="username">
+        <label for="aid_password" class="password"></label>
+        <input type="password" placeholder="Password" name="pass">
+        <input type="submit" name="save[login]" value="" class="button">
+        <div class="clear"></div>
+    </form>
+</div>
+{elseif $login_st|default:'' eq 'still'}
+<div class="login-notification">
+    <span class="notification-arrowup"></span>
+    <div class="notification-body"><p>Your still stay on System. 
+            Klik <a href="{$config->site_url('login/operatorlogin/logout_process')}">Logout</a> For End This Session</p></div>
+    <span class="notification-footer"></span>
+</div>
+{/if}
+

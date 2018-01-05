@@ -1,0 +1,39 @@
+<div class="breadcrum">
+    <p>
+        <a href="#">Settings</a><span></span>
+        <a href="{$config->site_url('pengaturan/permissions')}">Permissions</a><span></span>
+        <small>Tambah Role</small>
+    </p>
+    <div class="clear"></div>
+</div>
+
+<!-- notification template -->
+{include file="base/templates/notification.html"}
+<!-- end of notification template-->
+<form action="{$config->site_url('pengaturan/permissions/process_add')}" method="post">
+    <table class="table-input" width="100%">
+        <tr class="headrow">
+            <th colspan="2">Tambah Role</th>
+        </tr>
+        <tr>
+            <td>Nama Role</td>
+            <td>
+                <input type="text" name="role_nm" maxlength="30" size="50" value="{$result.role_nm|default:''}" />
+                <em>* wajib diisi</em>
+            </td>
+        </tr>
+        <tr>
+            <td>Deskripsi</td>
+            <td>
+                <input type="text" name="role_desc" maxlength="70" size="100" value="{$result.role_desc|default:''}" /> 
+                <em>* wajib diisi</em>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="submit-box"> 
+                <input type="submit" name="save" value="Simpan" class="edit-button" /> 
+                <input type="reset" name="save[reset]" value="Reset" class="edit-button" />
+            </td>
+        </tr>
+    </table>
+</form>

@@ -1,0 +1,103 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>Nationality</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <ol class="breadcrumb">
+                <li><a href="#">System</a></li>
+                <li><a href="#">Master Data</a></li>
+                <li><a href="{$config->site_url('sys_masterdata/nationality')}">Nationality</a></li>
+                <li class="active">Edit</li>
+            </ol>
+        </div>
+    </div>
+    <!-- notification template -->
+    {include file="base/templates/notification.html"}
+    <!-- end of notification template-->
+    <div class="row">  
+        <div class="col-md-12">
+            <div class="portlet box cyan">
+                <div class="portlet-title">
+                    <div class="title">Edit Nationality</div>
+                    <div class="actions">
+                        <div class="btn-group">
+                            <a data-toggle="dropdown" class="btn btn-default dropdown-toggle">
+                                Back to List <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu pull-right">
+                                <li><a href="{$config->site_url('sys_masterdata/nationality/add')}">Add New</a></li>
+                                <li><a href="{$config->site_url('sys_masterdata/nationality')}">List Nationality</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <form class="form-horizontal" action="{$config->site_url('sys_masterdata/nationality/process_edit')}" method="post">
+                        <input type="hidden" name="nation_id" value="{$nationality.NATION_ID|default:''}" />
+                        <input type="hidden" name="nation_cd_old" value="{$nationality.NATION_CD|default:''}" />
+                        <table class="table table-form">
+                            <tbody>
+                                <tr>
+                                    <td width="20%">
+                                        <label class="control-label">Code</label><br>
+                                    </td>
+                                    <td width="5%"><label class="control-label">:</label></td>
+                                    <td width="75%">
+                                        <input class="form-control input-sm" value="{$nationality.NATION_CD|default:''}" name="nation_cd" size="3" maxlength="3" placeholder="Code">
+                                        <span class="required">*)</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="control-label">Nation Name</label><br>
+                                    </td>
+                                    <td><label class="control-label">:</label></td>
+                                    <td>
+                                        <input class="form-control input-sm" value="{$nationality.NATION_NAME|default:''}" name="nation_name" size="50" maxlength="50" placeholder="Nation Name">
+                                        <span class="required">*)</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="control-label">Birth Country</label><br>
+                                    </td>
+                                    <td><label class="control-label">:</label></td>
+                                    <td>
+                                        <input class="form-control input-sm" value="{$nationality.NATION_CAPITAL|default:''}" name="nation_capital" size="50" maxlength="50" placeholder="Nation Capital">
+                                        <span class="required">*)</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label class="control-label">Status</label></td>
+                                    <td><label class="control-label">:</label></td>
+                                    <td>
+                                        <select name="active_st">
+                                            <option value="1" {if $nationality.ACTIVE_ST|default:'' eq '1'}selected="selected"{/if}>Active</option>
+                                            <option value="0" {if $nationality.ACTIVE_ST|default:'' eq '0'}selected="selected"{/if}>Disable</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label class="control-label"></label></td>
+                                    <td><label class="control-label"></label></td>
+                                    <td>
+                                        <div class="btn-toolbar">
+                                            <button value="reset" class="btn btn-red" type="reset">Reset</button>
+                                            <button value="submit" class="btn btn-blue" type="submit">Save</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

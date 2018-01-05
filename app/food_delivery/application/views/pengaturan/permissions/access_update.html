@@ -1,0 +1,62 @@
+<!-- javascript -->
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".checked-all").click(function() {
+            var id = $(this).attr('id');
+            var status = $("#"+id).attr('checked');
+            if (status == true) {
+                $(".r"+id).attr('checked', 'checked');
+            } else {
+                $(".r"+id).removeAttr('checked');
+                
+            }
+        });
+    });
+</script>
+<!-- end of javascript -->
+
+<div class="breadcrum">
+    <p>
+        <a href="#">Settings</a><span></span>
+        <a href="{$config->site_url('pengaturan/permissions')}">Permissions</a><span></span>
+        <small>Hak Akses</small>
+    </p>
+    <div class="clear"></div>
+</div>
+
+<table class="table-view" width="100%">
+    <tbody>
+        <tr class="headrow">
+            <th colspan="2"><b>INFORMASI HAK AKSES</b></th>
+        </tr>
+        <tr>
+            <td width="15%"><b>NAMA</b></td>
+            <td width="85%">{$detail.role_nm|default:''}</td>
+        </tr>
+        <tr>
+            <td width="15%"><b>DESKRIPSI</b></td>
+            <td width="85%">{$detail.role_desc|default:''}</td>
+        </tr>
+    </tbody>
+</table>
+<br/>
+<!-- notification template -->
+{include file="base/templates/notification.html"}
+<!-- end of notification template-->
+<form action="{$config->site_url('pengaturan/permissions/process')}" method="post">
+    <input type="hidden" name="role_id" value="{$result.role_id|default:''}" />
+    <table class="table-view" width="100%">
+        <tr>
+            <th width="5%"></th>
+            <th width="55%">Judul Menu</th>
+            <th width="10%">Halaman Tambah</th>
+            <th width="10%">Halaman View</th>
+            <th width="10%">Halaman Edit</th>
+            <th width="10%">Halaman Hapus</th>
+        </tr>
+        {$list_menu|default:''}
+        <tr>
+            <td colspan="6"><input type="submit" name="save" value="Simpan" class="button green" /></td>
+        </tr>
+    </table>
+</form>

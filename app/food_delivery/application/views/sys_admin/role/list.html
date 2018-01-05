@@ -1,0 +1,78 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>Role</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <ol class="breadcrumb">
+                <li><a href="">System</a></li>
+                <li><a href="">Privileges</a></li>
+                <li><a href="{$config->site_url('sys_admin/role')}">Role</a></li>
+                <li class="active">List</li>
+            </ol>
+        </div>
+    </div>
+    <!-- notification template -->
+    {include file="base/templates/notification.html"}
+    <!-- end of notification template-->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet box cyan">
+                <div class="portlet-title">
+                    <div class="title">List Role</div> 
+               
+                        <div class="actions">
+                            <div class="btn-group">
+                                <a href="{$config->site_url('sys_admin/role/add')}" class="btn btn-default dropdown-toggle">
+                                    Add Role
+                                </a>
+                            </div>
+                        </div>   
+                     </div>
+                <div class="portlet-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th width="5%">&nbsp;No</th>
+                                <th width="20%" style="text-align:left">&nbsp;Name</th>
+                                <th width="60%" style="text-align:left">&nbsp;Description</th>
+                                <th width="15%">&nbsp;Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {if isset($rs_id)}
+                            {foreach from=$rs_id item=result}
+                            <tr {if ($no % 2) <> 0}class="blink-row"{/if}>
+                                <td align="center">{$no++}.</td>
+                                <td>{$result.ROLE_NM}</td>
+                                <td>{$result.ROLE_DESC}</td>
+                                <td align="center">
+                                    <a href="{$config->site_url({'sys_admin/role/access_update/'|cat:$result.ROLE_ID})}" class="btn btn-blue btn-xs"><span class="glyphicon glyphicon-check"></span> Permissions</a>
+                                </td> 
+                            </tr>
+                            {foreachelse}
+                            <tr>
+                                <td colspan="4">Data not found!</td>
+                            </tr>
+                            {/foreach}
+                            {else}
+                            <tr>
+                                <td colspan="4">Data not found!</td>
+                            </tr>
+                            {/if}
+                        </tbody>
+                    </table>
+                    <ul class="pagination pagination-sm pull-right">
+                        {$pagination.data|default:''}
+                        <li class="info"><strong>{$pagination.start|default:'0'} - {$pagination.end|default:'0'}</strong> from <strong>{$pagination.total|default:'0'}</strong> Records</li>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

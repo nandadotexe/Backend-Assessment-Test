@@ -16,6 +16,22 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`db_food_delivery` /*!40100 DEFAULT CHAR
 
 USE `db_food_delivery`;
 
+/*Table structure for table `api` */
+
+DROP TABLE IF EXISTS `api`;
+
+CREATE TABLE `api` (
+  `cd` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `key` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `date_created` date DEFAULT NULL,
+  `date_expired` date DEFAULT NULL,
+  PRIMARY KEY (`cd`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `api` */
+
+insert  into `api`(`cd`,`key`,`date_created`,`date_expired`) values ('API','R4H4514','2018-01-05','2018-01-31');
+
 /*Table structure for table `customer` */
 
 DROP TABLE IF EXISTS `customer`;
@@ -25,6 +41,7 @@ CREATE TABLE `customer` (
   `cust_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `phone_number` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `address` text COLLATE utf8_unicode_ci,
   `password` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `st_active` enum('0','1') COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id_customer`)
@@ -32,7 +49,7 @@ CREATE TABLE `customer` (
 
 /*Data for the table `customer` */
 
-insert  into `customer`(`id_customer`,`cust_name`,`phone_number`,`email`,`password`,`st_active`) values (1,'Miftakhurrokhmat','+6285729300019','dmasmiv@gmail.com','0860dfc81a442d5c5623','1');
+insert  into `customer`(`id_customer`,`cust_name`,`phone_number`,`email`,`address`,`password`,`st_active`) values (1,'Miftakhurrokhmat','+6285729300019','dmasmiv@gmail.com',NULL,'0860dfc81a442d5c5623','1');
 
 /*Table structure for table `menu` */
 

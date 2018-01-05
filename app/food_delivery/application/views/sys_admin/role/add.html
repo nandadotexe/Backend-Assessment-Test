@@ -1,0 +1,91 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>Users</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <ol class="breadcrumb">
+                <li><a href="">System</a></li>
+                <li><a href="">Privileges</a></li>
+                <li><a href="{$config->site_url('sys_admin/role')}">Role</a></li>
+                <li class="active">Add</li>
+            </ol>
+        </div>
+    </div>
+    <!-- notification template -->
+    {include file="base/templates/notification.html"}
+    <!-- end of notification template-->
+    <div class="row">  
+        <div class="col-md-12">
+            <div class="portlet box cyan">
+                <div class="portlet-title">
+                    <div class="title">Add Role</div>
+                    <div class="actions" onclick="">
+                        <div class="btn-group">
+                            <a href="{$config->site_url('sys_admin/role')}" class="btn btn-default dropdown-toggle">
+                                List Role
+                            </a>
+                        </div>
+                    </div>  
+                </div>
+                <div class="portlet-body">
+                    <form class="form-horizontal" action="{$config->site_url('sys_admin/role/process_add')}" method="post" enctype="multipart/form-data">
+                        <table class="table table-form" width="100%" border="0">
+                            <thead>
+                                <tr>
+                                    <th colspan="3" style="text-align: left;"></th>
+                                </tr>
+                            </thead>
+<!--                            <tr>
+                                <td width="20%"><label class="control-label">Web Portal</label></td>
+                                <td width="5%"><label class="control-label">:</label></td>
+                                <td width="75%">
+                                    <select name="portal_id">
+                                        <option value=""></option>
+                                        {foreach from=$rs_id item=data}
+                                        <option value="{$data.PORTAL_ID}" {if {$result.PORTAL_ID|default:''} == $data.PORTAL_ID}selected="selected"{/if}>{$data.PORTAL_NM}</option>
+                                        {/foreach}
+                                    </select>
+                                </td>
+                            </tr>-->
+                            <tr>
+                                <td><label class="control-label">Role Name</label></td>
+                                <td><label class="control-label">:</label></td>
+                                <td><input type="text" name="role_nm" maxlength="30" size="50" value="{$result.ROLE_NM|default:''}" /> </td>
+                            </tr>
+                            <tr>
+                                <td><label class="control-label">Role Description</label></td>
+                                <td><label class="control-label">:</label></td>
+                                <td><input type="text" name="role_desc" maxlength="70" size="100" value="{$result.ROLE_DESC|default:''}" /> </td>
+                            </tr>
+<!--                            <tr>
+                                <td><label class="control-label">Default Page</label></td>
+                                <td><label class="control-label">:</label></td>
+                                <td><input type="text" name="default_page" maxlength="50" size="50" value="{$result.DEFAULT_PAGE|default:''}" /> </td>
+                            </tr>-->
+                            <tr>
+                                   <th colspan="3" style="text-align: left;"></th>
+                            </tr>
+                            <tr>
+                                <td><label class="control-label"></label></td>
+                                <td><label class="control-label"></label></td>
+                                <td>
+                                    <div class="btn-toolbar">
+                                        <input type="reset" name="save[reset]" value="Reset" class="btn btn-red" />
+                                        <input type="submit" name="save[insert]" value="Save" class="btn btn-blue" /> 
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </form>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </div>					
+</div>

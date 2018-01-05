@@ -1,0 +1,153 @@
+<html lang="en" class="no-js"> <!--<![endif]-->
+    <!-- BEGIN HEAD -->
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>{$page.NAV_TITLE|default:'Home'} - {$site.SITE_TITLE|default:''}</title>
+        <link href="{$BASEURL}resource/doc/images/shortcut_icon.jpg" rel="SHORTCUT ICON" />
+        <!-- Styles -->
+        {$LOAD_STYLE}
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" type="text/css" href="{$THEMESPATH}" media="screen" />
+        <!-- Bootstrap core JavaScript
+      ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        {$LOAD_JAVASCRIPT}
+        <script>
+            jQuery(document).ready(function() {
+                App.init(); // initlayout and core plugins
+                $(function() {
+                    $('#inner-scroll').slimScroll({
+                        height: '400px',
+                        railVisible: false,
+                        wheelStep: 3,
+                        alwaysVisible: true
+                    });
+                });
+
+            });
+
+            // validate input to number
+            function must_number(e) {
+                if (!/^[0-9]+$/.test(e.value)) {
+                    e.value = e.value.substring(0, e.value.length - 1);
+                }
+            }
+
+            // redirect to url
+            function redirect(url) {
+                if (url !== null) {
+                    window.location = url;
+                } else {
+                    alert("URL not defined!")
+                }
+            }
+
+            $(function() {
+                $("#loading-div-background").css({
+                    opacity: 0.8
+                });
+
+               $.showAnimation = function() {
+                    $("#loading-div-background").show();
+                }
+
+                $.hideAnimation = function() {
+                    $("#loading-div-background").hide();
+                }
+            });
+
+        </script>
+    </head>
+    <!-- END HEAD -->
+    <!-- BEGIN BODY -->
+    <body class="page-header-fixed" >
+        <div id="loading-div-background" style="display:none;">
+            <div id="loading-div" class="ui-corner-all" >
+                <img src="{$BASEURL}resource/doc/images/icon/loading-icon.gif" alt="Loading.."/>
+            </div>
+        </div>
+        <div class="header navbar navbar-fixed-top">
+            <!-- BEGIN TOP NAVIGATION BAR -->
+            <!-- BEGIN LOGO -->
+            <a class="logo" href="#">
+                <img src="{$BASEURL}resource/doc/images/dmis.png" alt="DMIS Web"/>
+            </a>
+            <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!-- END LOGO -->
+            <!-- Begin Menu -->
+            <ul class="nav navbar-left pull-left">
+                <li class="dropdown notification">
+                    <a href="{$config->site_url('dashboard/welcome')}"><span class="">Home</span></a>
+                </li>
+            </ul>
+            <ul class="nav navbar-left pull-left">
+                <li class="dropdown notification">
+                    <a href="{$config->site_url('help_support/about')}"><span class="">About</span></a>
+                </li>
+            </ul>
+            <ul class="nav navbar-left pull-left">
+                <li class="dropdown notification">
+                    <a href="{$config->site_url('help_support/help')}"><span class="">Help</span></a>
+                </li>
+            </ul>
+            <!-- End Menu -->
+
+            <!-- BEGIN TOP NAVIGATION MENU -->
+            <ul class="nav navbar-right pull-right">
+                <!-- BEGIN NOTIFICATION DROPDOWN -->
+                <li class="dropdown user">
+                    <a data-close-others="true" data-hover="dropdown" data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <img src="{$com_user.USER_IMG|default:'user.png'}" alt="" class="img-rounded" width='24px' height='24px'/>
+<!--                        <span class="username">{$com_user.FULL_NAME|default:''}</span>-->
+                        <span class="glyphicon glyphicon-angle-down"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <div class="profile">
+                                <span><b>Name &nbsp;&nbsp; :</b> {$com_user.FULL_NAME|default:''}</span>
+                            </div>
+                        </li>
+<!--                        <li>
+                            <div class="profile">
+                                <span><b>District :</b> {$com_user.DISTRICT|default:''}</span>
+                            </div>
+                        </li>-->
+                        <li>
+                            <div class="profile">
+                                <span><b>Role &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</b> {$com_user.ROLE_NM|default:''}</span>
+                            </div>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="{$config->site_url('pengaturan/editprofile/edit_biodata')}"><i class="icon-user"></i> Edit Biodata</a></li>
+                        <li class="divider"></li>
+                        <li><a href="{$config->site_url('pengaturan/editprofile/change_password')}"><i class="icon-gear"></i> Change Password</a></li>
+                        <li class="divider"></li>
+                        <li><a href="{$config->site_url('login/operatorlogin/logout_process')}"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+                    </ul>
+                </li>
+                <!-- END NOTIFICATION DROPDOWN -->
+            </ul>
+            <!-- END TOP NAVIGATION MENU --> <!--/.nav-collapse -->
+        </div>
+        <div class="page-container">
+            <!-- BEGIN SIDEBAR -->
+            <div class="page-sidebar collapse navbar-collapse">
+                {include file="base/operator/sidebar.html"}
+            </div>
+            <!-- END SIDEBAR -->
+            <!-- BEGIN CONTENT -->
+            <div class="page-content">
+                {include file="$template_content"}
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- /.container -->
+    </body>
+</html>

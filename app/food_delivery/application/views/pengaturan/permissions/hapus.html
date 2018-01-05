@@ -1,0 +1,34 @@
+<div class="breadcrum">
+    <p>
+        <a href="#">Settings</a><span></span>
+        <a href="{$config->site_url('pengaturan/permissions')}">Permissions</a><span></span>
+        <small>Hapus Role</small>
+    </p>
+    <div class="clear"></div>
+</div>
+
+<!-- notification template -->
+{include file="base/templates/notification.html"}
+<!-- end of notification template-->
+<form action="{$config->site_url('pengaturan/permissions/process_delete')}" method="post">
+    <input type="hidden" name="role_id" value="{$result.role_id|default:''}" />
+    <table class="table-input" width="100%">
+        <tr class="headrow">
+            <th colspan="2">Hapus Role</th>
+        </tr>
+        <tr>
+            <td width="10%">Nama</td>
+            <td>: {$result.role_nm|default:''}</td>
+        </tr>
+        <tr>
+            <td>Deskripsi</td>
+            <td>: {$result.role_desc|default:''}</td>
+        </tr>
+        
+        <tr>
+            <td colspan="2"><input type="submit" name="save" value="Hapus" class="edit-button" /> 
+                <em><b>** Menghapus role akan menghapus user yang memiliki role juga</b></em>
+            </td>
+        </tr>
+    </table>
+</form>

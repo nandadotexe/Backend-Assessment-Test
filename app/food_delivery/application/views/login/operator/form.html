@@ -1,0 +1,60 @@
+<form method="post" action="{$config->site_url('login/operatorlogin/login_process')}" class="form-vertical login-form" novalidate="novalidate" style="display: block;">
+   {if $login_st|default:'' eq ''}
+    <div class="alert alert-info">
+        <i class="icon-info-sign"></i><small><strong> Welcome To DMIS !</strong> Enter your Username and Password to login this system</small>
+    </div>
+   {elseif $login_st|default:'' eq 'error'}
+   <div class="alert alert-danger">
+       <i class="icon-remove-sign"></i><small><strong> Sorry !</strong> Your Username or password is invalid, Please Try with valid Username or Password</small>
+    </div>
+   {elseif $login_st|default:'' eq 'maintenance'}
+   <div class="alert alert-danger">
+       <i class="icon-remove-sign"></i><small><strong> Sorry !</strong> Your system need maintenance.Please contact developer.</small>
+    </div>
+   {elseif $login_st|default:'' eq 'still'}
+   <div class="alert alert-warning">
+       <i class="icon-warning-sign"></i><p><small><strong> Warning !</strong> Your still stay on System. 
+           Klik <a href="{$config->site_url('login/operatorlogin/logout_process')}">Logout</a> For End This Session</p></small></div>
+    </div>
+   {/if}
+    <div class="control-group">
+        <label class="control-label visible-ie8 visible-ie9">Password</label>
+        <div class="controls">
+            <div class="input-icon left">
+                <i class="icon-user"></i>
+                <input type="text" name="username" placeholder="Username" autocomplete="off" class="m-wrap placeholder-no-fix">
+            </div>
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls">
+            <div class="input-icon left">
+                <i class="icon-lock"></i>
+                <input type="password" name="pass" placeholder="Password" autocomplete="off" class="m-wrap placeholder-no-fix">
+            </div>
+        </div>
+    </div>
+    <div class="form-actions">
+        <button class="btn btn-blue pull-right" type="submit">
+            Login <i class="icon-chevron-sign-right"></i>
+        </button>     
+        <div class="clear"></div>
+    </div>
+</form>
+
+<!-- Bootstrap core JavaScript
+       ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<!-- load javascript -->
+{$LOAD_JAVASCRIPT}
+<!-- end of javascript	-->
+<script>
+    $.backstretch([
+        "{$BASEURL}resource/doc/images/1.jpg",
+        "{$BASEURL}resource/doc/images/2.jpg",
+        "{$BASEURL}resource/doc/images/3.jpg",
+    ], {
+        fade: 750,
+        duration: 4000
+    });
+</script>

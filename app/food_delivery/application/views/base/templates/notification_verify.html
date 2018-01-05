@@ -1,0 +1,9 @@
+{if $notification_header|default:'' == "success"}
+<p style="color:green"><strong>{$notification_header|capitalize} :</strong> {$notification_message} </p>
+{$notification_error}
+{/if}
+
+{if $notification_header|default:'' == "error"}
+<p style="color:red"><strong>{$notification_header|capitalize} :</strong> {$notification_message} </p>
+{$notification_error}
+{/if}

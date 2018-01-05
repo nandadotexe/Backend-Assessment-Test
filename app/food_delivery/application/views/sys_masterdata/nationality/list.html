@@ -1,0 +1,120 @@
+<script type="text/javascript">
+    $(function() {
+        // search keyword code focus
+        $.fn.serchKeywordFocus = function() {
+            if ($(this).val() == "") {
+                $(this).focus();
+            } else {
+                $(this).select();
+            }
+        };
+
+        // nationality focus
+        $("input[name='search_keyword']").serchKeywordFocus();
+
+    })
+</script>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>Nationality</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <ol class="breadcrumb">
+                <li><a href="#">System</a></li>
+                <li><a href="#">Master Data</a></li>
+                <li><a href="{$config->site_url('sys_masterdata/nationality')}">Nationality</a></li>
+                <li class="active">List</li>
+            </ol>
+        </div>
+    </div>
+    <!-- notification template -->
+    {include file="base/templates/notification.html"}
+    <!-- end of notification template-->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="search">
+                <div class="content-search-head">
+                    <p><img src="{$BASEURL|default:''}resource/themes/dmis_themes/default/img/search.png" title="Search"> Search Nationality</p>
+                </div>
+                <form method="post" action="{$config->site_url('sys_masterdata/nationality/process_search')}">
+                    <div class="content-search-form">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td width="20%"><label class="control-label">Keyword</label> </td>
+                                    <td width="5%"><label class="control-label">:</label> </td>
+                                    <td width="75%">
+                                        <input type="text" placeholder="Nationality or Capital" size="50" name="search_keyword" value="{$search.search_keyword|default:''}">
+                                        <input type="submit" name="search_button" value="Search" class="btn btn-blue">
+                                        <input type="submit" name="search_button" value="Clear" class="btn btn-orange">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row">  
+        <div class="col-md-12">
+            <div class="portlet box cyan">
+                <div class="portlet-title">
+                    <div class="title">List Nationality</div>
+                    <div class="actions">
+                        <div class="btn-group">
+                            <a href="{$config->site_url('sys_masterdata/nationality/add')}" class="btn btn-default dropdown-toggle">
+                                Add New
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th width="5%" style="vertical-align: middle">No.</th>
+                                <th width="6%">Code</th>
+                                <th width="30%">Nationality</th>
+                                <th width="30%">Country</th>
+                                <th width="10%" style="vertical-align: middle">Status</th>
+                                <th width="19%"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {foreach from=$arr_nationality item=result}
+                            <tr {if ($no % 2) <> 0}class="blink-row"{/if}>
+                                <td align="center">{$no++}</td>
+                                <td align="center">{$result.NATION_CD|default:'-'}</td>
+                                <td>{$result.NATION_NAME|default:'-'}</td>
+                                <td>{$result.NATION_CAPITAL|default:'-'}</td>
+                                <td align="center">{if $result.ACTIVE_ST|default:'' eq '1'}Active{else}Disabled{/if}</td>
+                                <td align="center">
+                                    {if ({$result.NATION_ID|default:''} neq 161)}
+                                    <a href="{$config->site_url({'sys_masterdata/nationality/edit/'|cat:$result.NATION_ID})}" class="btn btn-blue btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                                    <a href="{$config->site_url({'sys_masterdata/nationality/delete/'|cat:$result.NATION_ID})}" class="btn btn-red btn-xs"><span class="glyphicon glyphicon-remove"></span> Delete</a>
+                                    {/if}
+                                </td>
+                            </tr>
+                            {foreachelse}
+                            <tr>
+                                <td colspan="5">Data not found!</td>
+                            </tr>
+                            {/foreach}
+                        </tbody>
+                    </table>
+                    <ul class="pagination pagination-sm pull-right">
+                        {$pagination.data|default:''}
+                        <li class="info"><strong>{$pagination.start|default:'0'} - {$pagination.end|default:'0'}</strong> of <strong>{$pagination.total|default:'0'}</strong> Records</li>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

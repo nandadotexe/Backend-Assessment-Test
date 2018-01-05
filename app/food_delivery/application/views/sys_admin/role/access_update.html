@@ -1,0 +1,88 @@
+<!-- javascript -->
+<script type="text/javascript">
+    $(function() {
+        $(".checked-all").click(function(){
+            var status = $(this).is(":checked");
+            if(status == true){
+                $(".r" + $(this).val()).prop('checked', true);
+            } else {
+                $(".r" + $(this).val()).prop('checked', false);
+            }
+        });
+    })
+</script>
+<!-- end of javascript -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>Role</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <ol class="breadcrumb">
+                <li><a href="">System</a></li>
+                <li><a href="">Privileges</a></li>
+                <li><a href="{$config->site_url('pengaturan/permissions')}">Role</a></li>
+                <li class="active">Permissions</li>
+            </ol>
+        </div>
+    </div>
+
+    <div>
+        <table class="table table-bordered" width="100%">
+            <body>
+            <thead>
+                <tr>
+                    <th colspan="2"><b>PERMISSION OF ROLE</b></th>
+                </tr>
+            </thead>
+            <tr class="blink-row">
+                <td width="15%"><b>ROLE NAME</b></td>
+                <td width="85%">{$detail.ROLE_NM|default:''}</td>
+            </tr>
+            <tr class="blink-row">
+                <td width="15%"><b>ROLE DESCRIPTION</b></td>
+                <td width="85%">{$detail.ROLE_DESC|default:''}</td>
+            </tr>
+            </body>
+        </table>
+    </div>
+    <br/>
+    <!-- notification template -->
+    {include file="base/templates/notification.html"}
+    <!-- end of notification template-->
+    <form action="{$config->site_url('sys_admin/role/process')}" method="post">
+        <input type="hidden" name="role_id" value="{$result.ROLE_ID|default:''}" />
+        <table class="table table-bordered" width="100%">
+            <body>
+            <thead>
+                <tr>
+                    <th width="5%"></th>
+                    <th width="5%">NO</th>
+                    <th width="38%" style="vertical-align:middle">Name of Menu</th>
+                    <th width="13%" style="vertical-align:middle">Page Add</th>
+                    <th width="13%" style="vertical-align:middle">Page View</th>
+                    <th width="13%" style="vertical-align:middle">Page Edit</th>
+                    <th width="13%" style="vertical-align:middle">Page Delete</th>
+                </tr>
+            </thead>
+            {$list_menu|default:''}
+            <tr>
+            <td colspan="6">
+                 <div class="btn-toolbar">
+                     <a href="{$config->site_url('sys_admin/role')}"><button value="reset" class="btn btn-red" type="button"><==back to list</button></a>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <button value="submit" class="btn btn-blue" type="Save">Save</button>
+                                        </div>
+                                    </td>
+                <!--<input type="submit" name="save" value="Simpan" class="button green" /></td>-->
+            </tr>
+            </body>
+        </table>
+    </form>
+</div>

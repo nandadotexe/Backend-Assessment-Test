@@ -1,0 +1,35 @@
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!--> 
+<html lang="en" class="no-js">
+    <!--<![endif]-->
+    <!-- BEGIN HEAD -->
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>Login - {$site.SITE_TITLE|default:''}</title>
+        <link href="{$BASEURL}/resource/doc/images/icon/favicon.jpg" rel="SHORTCUT ICON" />
+        <!-- themes style -->
+        <link rel="stylesheet" type="text/css" href="{$THEMESPATH}" media="screen" />
+        <!-- other style -->
+        {$LOAD_STYLE}
+    </head>
+    <!-- body -->
+        <body class="login">
+        <div class="logo">
+            <img src="{$BASEURL}resource/doc/images/login-logo.png" alt="login"/>
+        </div>
+        <!-- layout -->
+        <div class="content">
+            <h3 class="form-title">Login DMIS</h3>
+            <!-- content -->
+            {include file="$template_content"}
+            <!-- end of content -->
+        </div>
+        <div class="support"> DNRN &COPY 2017 | UniSoft.ID </div>
+        <!-- end of layout	-->
+    </body>
+    <!-- end body -->
+</html>

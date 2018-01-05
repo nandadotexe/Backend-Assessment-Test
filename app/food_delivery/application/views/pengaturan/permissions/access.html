@@ -1,0 +1,58 @@
+<div class="breadcrum">
+    <p>
+        <a href="#">Settings</a><span></span>
+        <small>Permissions</small>
+    </p>
+    <div class="clear"></div>
+</div>
+
+<div class="navigation">
+    <div class="pageRow">
+        <div class="pageNav">
+            <ul>
+                <li class="info"><strong>{$pagination.total|default:0}</strong> Record&nbsp;</li>{$pagination.data|default:''}
+            </ul>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="navigation-button">
+        <ul>
+            <li><a href="{$config->site_url('pengaturan/permissions/add')}"><img src="{$BASEURL}resource/doc/images/icon/add-icon.png" alt="" /> Add Data</a></li>
+        </ul>
+    </div>
+    <div class="clear"></div>
+
+
+</div>
+<!-- notification template -->
+{include file="base/templates/notification.html"}
+
+<table class="table-view" width="100%">
+    <tr>
+        <th width="5%">No</th>
+        <th width="25%" align="left">&nbsp;Nama</th>
+        <th width="45%" align="left">&nbsp;Deskripsi</th>
+        <th width="25%"></th>
+    </tr>
+    {foreach from=$rs_id key=no item=result}
+    <tr {if ($nom % 2) <> 1}class="blink-row"{/if}>
+        <td align="center">{$nom++}.</td>
+        <td>{$result.role_nm}</td>
+        <td>{$result.role_desc}</td>
+        <td align="center">
+            
+            {if $result.role_id != 2 AND $result.role_id != 9}
+            <a href="{$config->site_url({'pengaturan/permissions/edit/'|cat:$result.role_id})}" class="button-edit">Edit</a>
+            {/if}
+            <a href="{$config->site_url({'pengaturan/permissions/access_update/'|cat:$result.role_id})}" class="button-edit">Hak Akses</a>
+            {if $result.role_id != 2 AND $result.role_id != 9}
+            <a href="{$config->site_url({'pengaturan/permissions/hapus/'|cat:$result.role_id})}" class="button-hapus">Hapus            </a>
+            {/if}
+        </td>
+    </tr>
+    {foreachelse}
+    <tr>
+        <td colspan="5">Empty</td>
+    </tr>
+    {/foreach}
+</table>

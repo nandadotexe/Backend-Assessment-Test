@@ -1,0 +1,128 @@
+<script type="text/javascript">
+    $(function() {
+        // search keyword code focus
+        $.fn.serchKeywordFocus = function() {
+            if ($(this).val() == "") {
+                $(this).focus();
+            } else {
+                $(this).select();
+            }
+        };
+
+        // nationality focus
+        $("input[name='search_keyword']").serchKeywordFocus();
+
+    })
+</script>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>Users</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <ol class="breadcrumb">
+                <li><a href="">System</a></li>
+                <li><a href="">Privileges</a></li>
+                <li><a href="{$config->site_url('sys_admin/users')}">Users</a></li>
+                <li class="active">List</li>
+            </ol>
+        </div>
+    </div>
+    <!-- notification template -->
+    {include file="base/templates/notification.html"}
+    <!-- end of notification template-->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="search">
+                <div class="content-search-head">
+                    <p><img src="{$BASEURL|default:''}resource/themes/dmis_themes/default/img/search.png" title="Search"> Search Users</p>
+                </div>
+                <form method="post" action="{$config->site_url('sys_admin/users/process_search')}">
+                    <div class="content-search-form">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td width="20%"><label class="control-label">Keyword</label> </td>
+                                    <td width="5%"><label class="control-label">:</label> </td>
+                                    <td width="75%">
+                                        <input type="text" placeholder="Name" size="50" name="search_keyword" value="{$search.search_keyword|default:''}">
+                                        <input type="submit" name="search_button" value="Search" class="btn btn-blue">
+                                        <input type="submit" name="search_button" value="Clear" class="btn btn-orange">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet box cyan">
+                <div class="portlet-title">
+                    <div class="title">List Users</div>
+                    <div class="actions" onclick="">
+                        <div class="btn-group">
+                            <a href="{$config->site_url('sys_admin/users/add')}" class="btn btn-default dropdown-toggle">
+                                Add New
+                            </a>
+                        </div>
+                    </div>  
+                </div>
+                <div class="portlet-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th width="4%">No</th>
+                                <th width="28%">Name</th>
+                                <th width="10%">District</th>
+                                <th width="13%">Role</th>
+                                <th width="16%">Email</th>
+                                <th width="14%">ID Card</th>
+                                <th width="15%"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {if isset($rs_id)}
+                            {foreach from=$rs_id item=result}
+                            <tr {if ($no % 2) <> 0}class="blink-row"{/if}>
+                                <td align="center">{$no++}.</td>
+                                <td align="left">{$result.FULL_NAME|upper|default:'-'}</td>
+                                <td align="center">{$result.DISTRICT|upper|default:'-'}</td>
+                                <td align="center">{$result.ROLE_NM|upper|default:'-'}</td>
+                                <td>{$result.USER_EMAIL|default:'-'}</td>
+                                <td>{$result.IDCARD_NO|default:'-'}</td>
+                                <td align="center">
+                                    <a href="{$config->site_url({'sys_admin/users/edit/'|cat:$result.USER_ID})}" class="btn btn-blue btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                                    <a href="{$config->site_url({'sys_admin/users/delete/'|cat:$result.USER_ID})}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                                </td> 
+                            </tr>
+                            {foreachelse}
+                            <tr>
+                                <td colspan="8">Data not found!</td>
+                            </tr>
+                            {/foreach}
+                            {else}
+                            <tr>
+                                <td colspan="8">Data not found!</td>
+                            </tr>
+                            {/if}
+                        </tbody>
+                    </table>
+                    <ul class="pagination pagination-sm pull-right">
+                        {$pagination.data|default:''}
+                        <li class="info"><strong>{$pagination.start|default:'0'} - {$pagination.end|default:'0'}</strong> from <strong>{$pagination.total|default:'0'}</strong> Records</li>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

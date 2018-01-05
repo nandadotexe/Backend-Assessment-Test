@@ -1,0 +1,56 @@
+<div class="breadcrum">
+    <p>
+        <a href="#">Settings</a><span></span>
+        <small>Preferences</small>
+    </p>
+    <div class="clear"></div>
+</div>
+<div class="search-box">
+    <h3><a href="#">Search</a></h3>
+    <form action="{$config->site_url('pengaturan/preferences/proses_cari')}" method="post">
+        <table class="table-search" width="100%" border='0'>
+            <tr> 
+                <th width="18%" align='right'>Preferences Group</th>
+                <td width="82%">
+                    <select name="pref_group">
+                        <option value=""></option>
+                        {foreach from=$rs_group item=data}
+                        <option value="{$data.pref_group}" {if $search.pref_group|default:'' eq $data.pref_group}selected="selected"{/if}>{$data.pref_group|upper}</option>
+                        {/foreach}
+                    </select>
+                    &nbsp;&nbsp;
+                    <input name="save" type="submit" value="Tampilkan" />
+                    <input name="save" type="submit" value="Reset" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div class="content-scroll">
+    <table class="table-view" width="100%">
+        <tr>
+            <th width="4%">No</th>
+            <th width="15%">Group</th>
+            <th width="20%">Name</th>
+            <th width="15%">Value</th>
+            <th width="40%">Description</th>
+            <th width="6%"></th>
+        </tr>
+        {foreach from=$rs_id item=result}
+        <tr {if ($no % 2) <> 1}class="blink-row"{/if}>
+            <td align="center">{$no++}.</td>
+            <td>{$result.pref_group|default:''}</td>
+            <td>{$result.pref_nm|default:''}</td>
+            <td>{$result.pref_value|default:''}</td>
+            <td>{$result.pref_desc|default:''}</td>
+            <td align="center">
+                <a href="{$config->site_url('pengaturan/preferences/edit/'|cat:$result.pref_id|default:'')}" class="button-edit">Edit</a>
+            </td>
+        </tr>
+        {foreachelse}
+        <tr>
+            <td colspan="6">Data not found!</td>
+        </tr>
+        {/foreach}
+    </table>
+</div>

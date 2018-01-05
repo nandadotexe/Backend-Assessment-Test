@@ -1,0 +1,116 @@
+<script type="text/javascript">
+    $(document).ready(function() {
+        // date picker
+        $(".tanggal").datepicker({
+            yearRange: '-90:+0',
+            changeMonth: true,
+            changeYear: true,
+            showOn: 'both',
+            buttonImage: '{$BASEURL}/resource/doc/images/icon/calendar.gif',
+            buttonImageOnly: true,
+            dateFormat: 'yy-mm-dd'
+        });
+    });
+</script>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header pull-left">
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="breadcrum">
+                <ol class="breadcrumb">
+                    <li>Account Settings</li>
+                    <li class="active">Edit Biodata</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <!-- notification template -->
+    {include file="base/templates/notification.html"}
+    <!-- end of notification template-->
+    <div class="row">  
+        <div class="col-md-12">
+            <div class="portlet box grey">
+                <div class="portlet-title">
+                    <div class="title">Edit Biodata</div>
+                </div>
+                <div class="portlet-body">
+                    <form class="form-horizontal" action="{$config->site_url('pengaturan/editprofile/process_edit_biodata')}" method="post" enctype="multipart/form-data">
+                        <table class="table table-form">
+                            <tr>
+                                <td width="20%"><label class="control-label">Full Name</label></td>
+                                <td width="5%"><label class="control-label"> : </label></td>
+                                <td width="40%">
+                                    <input type="text" name="FULL_NAME" value="{$result.FULL_NAME|default:''}" size="40" maxlength="50" class="form-control input-sm" size="60" placeholder="Full Name"/>
+                                    <span class="required"> *)</span>
+                                </td>
+                                <td rowspan="7" align='center' width="40%">
+                                    <img src="{$user_img|default:''}" alt="" style="height: 240px; background-color: #fff; border: 1px solid #ccc; padding: 5px;" />
+                                    <br /><br />
+                                    <input type="file" name="user_img" class="btn btn-green"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label class="control-label">Gender</label></td>
+                                <td><label class="control-label">:</label></td>
+                                <td>
+                                    <select name="GENDER" class="form-control input-sm">
+                                        <option value="">--- Select ---</option>
+                                        <option value="L" {if {$result.GENDER|default:''} == "L"}selected="selected"{/if}>Male</option>
+                                        <option value="P" {if {$result.GENDER|default:''} == "P"}selected="selected"{/if}>Female</option>
+                                    </select>
+                                    <span class="required"> *)</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label class="control-label">Place, Birth Date</label></td>
+                                <td><label class="control-label">:</label></td>
+                                <td>
+                                    <input type="text" name="BIRTH_PLACE" value="{$result.BIRTH_PLACE|default:''}" size="30" maxlength="50" class="form-control input-sm" placeholder="Place Birth"/>
+                                    , <input type="text" name="BIRTH_DATE" value="{$result.BIRTH_DATE|default:''}" size="10" maxlength="10"  class="form-control input-sm tanggal" placeholder="Date"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label class="control-label">Address</label></td>
+                                <td><label class="control-label">:</label></td>
+                                <td>
+                                    <input type="text" name="ADDRESS" value="{$result.ADDRESS|default:''}" size="70" maxlength="100" class="form-control input-sm" placeholder="Address"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label class="control-label">Phone Number</label></td>
+                                <td><label class="control-label">:</label></td>
+                                <td>
+                                    <input type="text" name="PHONE_NUMBER" value="{$result.PHONE_NUMBER|default:''}" size="30" maxlength="50" class="form-control input-sm" placeholder="Phone Number"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label class="control-label">Email</label></td>
+                                <td><label class="control-label">:</label></td>
+                                <td>
+                                    <input type="text" name="USER_MAIL" value="{$result.USER_MAIL|default:''}" size="40" maxlength="50" class="form-control input-sm" placeholder="Email"/>
+                                    <span class="required"> *)</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label class="control-label"></label></td>
+                                <td><label class="control-label"></label></td>
+                                <td>
+                                    <div class="btn-toolbar">
+                                        <button type="reset" class="btn btn-red" value="reset">Reset</button>
+                                        <button type="submit" class="btn btn-blue" value="submit">Save</button>                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

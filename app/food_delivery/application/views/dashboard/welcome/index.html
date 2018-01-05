@@ -1,0 +1,203 @@
+<script>
+    $(document).ready(function() {
+        $('.tab-left table.highchart').highchartTable();
+        $('.tab-left table.highchart-tab').highchartTable();
+
+    });
+</script>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1><i class="icon-dashboard"></i> Dashboard</h1>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <ol class="breadcrumb">
+                <li><a href="#">Dashboard</a></li>
+                <li class="active">Overview</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet box cyan tabbable">
+                <div class="portlet-title">
+                    <div class="title"><img src="{$BASEURL}/resource/themes/dmis_themes/default/img/tracking.png" title="Overview"> Overview </div> 
+                </div>
+                <div class="portlet-body">
+                    <div class="tabbable portlet-tabs">
+                        <ul class="nav nav-tabs">
+                            <li class=""><a data-toggle="tab" href="#portlet_tab2">Applicant This Month </a></li>
+                            <li class="active"><a data-toggle="tab" href="#portlet_tab1">Process Applicant Today</a></li>
+                        </ul>
+                        <div class="tab-content">
+
+                            <div id="portlet_tab1" class="tab-pane active">
+                                <div class="over">
+                                    <div class="tab-left">
+                                        <table class="highchart table-data" data-graph-type="column" data-graph-container=".. .. .highchart-container">
+                                            <caption style="font-weight: bold; padding-top: 10px; padding-bottom: 20px; font-size: 14px;">Activity Process Today : {$current_date|date_format:'%e %B %Y'|default:''}</caption>
+                                            <thead>
+                                                <tr>
+                                                    <th>Process</th>
+                                                    <th>BC</th>
+                                                    <th>ID</th>
+                                                    <th>GD</th>
+                                                    <th>MR</th>
+                                                    <th>DV</th>
+                                                    <th>AD</th>
+                                                    <th>NT</th>
+                                                    <th>DE</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>FO</td>
+                                                    {foreach from=$data_list item=item}
+                                                    <td align='right'>{$item|number_format:0:",":"."|default:'0'}</td>
+                                                    {/foreach}
+                                                </tr>
+                                                <tr>
+                                                    <td>BO</td>
+                                                    {foreach from=$data_verification item=item}
+                                                    <td align='right'>{$item|number_format:0:",":"."|default:'0'}</td>
+                                                    {/foreach}
+                                                </tr>
+                                                <tr>
+                                                    <td>HOD</td>
+                                                    {foreach from=$data_approval item=item}
+                                                    <td align='right'>{$item|number_format:0:",":"."|default:'0'}</td>
+                                                    {/foreach}
+                                                </tr>
+                                                <tr>
+                                                    <td>Print</td>
+                                                    {foreach from=$data_print item=item}
+                                                    <td align='right'>{$item|number_format:0:",":"."|default:'0'}</td>
+                                                    {/foreach}
+                                                </tr>
+                                                <tr>
+                                                    <td>Take</td>
+                                                    {foreach from=$data_take item=item}
+                                                    <td align='right'>{$item|number_format:0:",":"."|default:'0'}</td>
+                                                    {/foreach}
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <br />
+                                        <br />
+                                        <table width="100%" style="border-top: 1px solid silver; border-bottom: 1px solid silver; font-size: 10px;">
+                                            <thead style="border-bottom: 1px solid silver;">
+                                                <tr>
+                                                    <th>Code </th>
+                                                    <th>Information </th>
+                                                    <th></th>
+                                                    <th>Code </th>
+                                                    <th>Information </th>
+                                                </tr>
+                                            </thead>
+                                            <tr>
+                                                <td>BC </td>
+                                                <td> Birth Certificate</td>
+                                                <td></td>
+                                                <td>DV </td>
+                                                <td> Divorce Certificate</td>
+                                            </tr>
+                                            <tr>
+                                                <td>ID </td>
+                                                <td>Identification ID Card</td>
+                                                <td></td>
+                                                <td>AD </td>
+                                                <td> Adoption Certificate</td>
+                                            </tr>
+                                            <tr>
+                                                <td>GD </td>
+                                                <td> Good Conduct</td>
+                                                <td></td>
+                                                <td>NT </td>
+                                                <td> Natinality </td>
+                                            </tr>
+                                            <tr>
+                                                <td>MR </td>
+                                                <td> Married Certificate</td>
+                                                <td></td>
+                                                <td>DE</td>
+                                                <td> Death Letter</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="highchart-container tab-right">
+                                        <table class="highchart table" data-graph-container-before="1" data-graph-type="column">
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div id="portlet_tab2" class="tab-pane">
+                                <div class="over">
+                                    <div class="break"></div>
+                                    <div class="tab-left">
+                                        <table class="highchart table-data" data-graph-type="column" data-graph-container=".. .. .highchart-container">
+                                            <caption style="font-weight: bold; padding-top: 10px; padding-bottom: 20px; font-size: 14px;">DNRN Registered Activities on {$current_date|date_format:'%B %Y'|default:''}</caption>
+                                            <thead>
+                                                <tr>
+                                                    <th>Part of Process</th>
+                                                    <th>Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Birth Certificate</td>
+                                                    <td align='right'>{$data_birth_month|number_format:0:",":"."|default:'0'}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>ID card</td>
+                                                    <td align='right'>{$data_idcard_month|number_format:0:",":"."|default:'0'}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Married</td>
+                                                    <td align='right'>{$data_marriage_month|number_format:0:",":"."|default:'0'}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Good Conduct</td>
+                                                    <td align='right'>{$data_conduct_month|number_format:0:",":"."|default:'0'}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Adoption</td>
+                                                    <td align='right'>{$data_adoption_month|number_format:0:",":"."|default:'0'}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Nationality</td>
+                                                    <td align='right'>{$data_nationality_month|number_format:0:",":"."|default:'0'}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Divorce</td>
+                                                    <td align='right'>{$data_divorce_month|number_format:0:",":"."|default:'0'}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Death</td>
+                                                    <td align='right'>{$data_death_month|number_format:0:",":"."|default:'0'}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="highchart-container tab-right">
+                                        <table class="highchart table" data-graph-container-before="1" data-graph-type="column">
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>  
+            </div>
+        </div>
+    </div>               
+</div>

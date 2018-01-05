@@ -1,0 +1,142 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>Users</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <ol class="breadcrumb">
+                <li><a href="">System</a></li>
+                <li><a href="">Privileges</a></li>
+                <li><a href="{$config->site_url('sys_admin/users')}">Users</a></li>
+                <li class="active">Delete</li>
+            </ol>
+        </div>
+    </div>
+    <!-- notification template -->
+    {include file="base/templates/notification.html"}
+    <!-- end of notification template-->
+    <div class="row">  
+        <div class="col-md-12">
+            <div class="portlet box cyan">
+                <div class="portlet-title">
+                    <div class="title">Delete Personal User</div>
+                    <div class="actions" onclick="">
+                        <div class="btn-group">
+                            <a href="{$config->site_url('sys_admin/users')}" class="btn btn-default dropdown-toggle">
+                                List User
+                            </a>
+                        </div>
+                    </div>  
+                </div>
+                <div class="portlet-body">
+                    <form class="form-horizontal" action="{$config->site_url('sys_admin/users/process_delete')}" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="USER_ID" value="{$result.USER_ID}">
+                        <table class="table table-form" width="100%" border="0">
+                            <thead>
+                                <tr>
+                                    <th colspan="3" style="text-align: left;">User Account</th>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <td width="20%"><label class="control-label">Username</label></td>
+                                <td width="5%"><label class="control-label"> : </label></td>
+                                <td width="75%">
+                                    {$result.USER_NAME|default:'-'}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label class="control-label">Role Access</label></td>
+                                <td><label class="control-label">:</label></td>
+                                <td>
+                                    {foreach from=$rs_role item=role}
+                                    {if {$result.ROLE_ID|default:''} eq $role.ROLE_ID}
+                                    {$role.ROLE_NM|default:'-'}
+                                    {/if}
+                                    {/foreach}
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><label class="control-label">District Work</label></td>
+                                <td><label class="control-label">:</label></td>
+                                <td>
+                                    {foreach from=$rs_district item=district}
+                                    {if {$result.USER_DISTRICT|default:''} eq $district.REGION_CD}
+                                    {$district.REGION_NAME|default:'-'}
+                                    {/if}
+                                    {/foreach}
+                                </td>
+                            </tr>
+                            <thead>
+                                <tr>
+                                    <th colspan="3" style="text-align: left;">Personal Data</th>
+                                </tr>
+                            </thead>
+
+                            <tr>
+                                <td><label class="control-label">Full Name</label></td>
+                                <td><label class="control-label">:</label></td>
+                                <td>
+                                    {$result.FULL_NAME|default:'-'}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label class="control-label">Employee ID</label></td>
+                                <td><label class="control-label">:</label></td>
+                                <td>
+                                    {$result.EMPLOYEE_ID|default:'-'}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label class="control-label">ID Card</label></td>
+                                <td><label class="control-label">:</label></td>
+                                <td>
+                                    {$result.IDCARD_NO|default:'-'}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label class="control-label">Email</label></td>
+                                <td><label class="control-label">:</label></td>
+                                <td>
+                                    {$result.USER_EMAIL|default:'-'}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label class="control-label">Phone Number</label></td>
+                                <td><label class="control-label">:</label></td>
+                                <td>
+                                    {$result.PHONE_NUMBER|default:'-'}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label class="control-label">Photo</label></td>
+                                <td><label class="control-label">:</label></td>
+                                <td>
+                                    <img src="{$BASEURL}{$USER_IMG}" alt="" style="height: 120px; border: 1px solid #999; background-color: #fff; padding: 5px;" />
+                                </td>
+                            </tr>
+                            <tr>
+                            </tr>
+
+                            <tr>
+                                <td><label class="control-label"></label></td>
+                                <td><label class="control-label"></label></td>
+                                <td>
+                                    <div class="btn-toolbar">
+                                        <input type="reset" name="save[reset]" value="Cancel" class="btn btn-red" />
+                                        <input type="submit" name="save[insert]" value="Delete" class="btn btn-blue" />                                    </div>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </form>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </div>					
+</div>
