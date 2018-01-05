@@ -1,0 +1,20 @@
+Basic authentication
+user: F00D
+pass: F00D2017
+
+http://json.parser.online.fr/
+
+
+1. AMBIL KEY
+  http://localhost/ws/restful_order/RetrieveKey/API
+ 
+
+  
+2. UPDATE ALAMAT   
+   http://localhost/ws/restful_order/UpdateAddress/API/R4H4514/1/Sleman
+   
+
+   
+3. AMBIL DATA ORDER
+   http://localhost/ws/restful_order/DetailOrder/API/R4H4514/2018-01-05/1
+   
